@@ -90,39 +90,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        Call<ResponseBody> call = RetrofitClient
+        Call<DefaultResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
                 .createUser(emailText, passwordText, nameText, schoolText);
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<DefaultResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                String s = null;
-                try {
-                    if(response.code() == 201) {
-                        s = response.body().string();
-                    }else{
-                        s = response.errorBody().string();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                if(s!=null){
-                    try {
-                        JSONObject jsonObject = new JSONObject(s);
-                        Toast.makeText(MainActivity.this, ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                if(response.code()==201){
+                    DefaultResponse dr = response.body();
+                    Toast.makeText(MainActivity.this, ""+dr.getMsg(), Toast.LENGTH_SHORT).show();
+                }else if(response.code() == 422){
+                    Toast.makeText(MainActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(MainActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+
             }
         });
+
     }
 }
