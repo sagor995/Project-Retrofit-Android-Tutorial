@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.regex.Pattern;
 
@@ -95,14 +98,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+                String s = null;
                 try {
-                    String s = response.body().string();
-                    Toast.makeText(MainActivity.this, ""+s, Toast.LENGTH_SHORT).show();
+                    if(response.code() == 201) {
+                        s = response.body().string();
+                    }else{
+                        s = response.errorBody().string();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
+                if(s!=null){
+                    try {
+                        JSONObject jsonObject = new JSONObject(s);
+                        Toast.makeText(MainActivity.this, ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override
