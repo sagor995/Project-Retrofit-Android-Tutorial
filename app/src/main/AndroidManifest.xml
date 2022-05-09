@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Reotrofit_Project_Android"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.LoginActivity"
             android:exported="false" />
         <activity

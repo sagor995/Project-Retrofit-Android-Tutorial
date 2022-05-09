@@ -12,6 +12,7 @@ import android.widget.Toast;
 import me.appsdevsa.reotrofit_project_android.models.DefaultResponse;
 import me.appsdevsa.reotrofit_project_android.R;
 import me.appsdevsa.reotrofit_project_android.api.RetrofitClient;
+import me.appsdevsa.reotrofit_project_android.storage.SharedPreferenceManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,13 +39,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.logIn:
                 startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 break;
             case R.id.signUp:
                 userSignUp();
                 break;
         }
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+        if(SharedPreferenceManager.getInstance(this).isLoggedIn()){
+            Intent i = new Intent(this, ProfileActivity.class);
+            //Open a new activity by clearing or closing all the previous.
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        }
+    }
     private void userSignUp() {
         emailText = email.getText().toString().trim();
         passwordText = password.getText().toString().trim();
