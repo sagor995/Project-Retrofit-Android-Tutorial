@@ -6,7 +6,11 @@
         <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/activity_login.xml" value="0.14719202898550723" />
         <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/activity_profile.xml" value="0.1361111111111111" />
-        <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/activity_profile2.xml" value="0.1762917933130699" />
+        <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/activity_profile2.xml" value="0.25" />
+        <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/home_fragment.xml" value="0.20811965811965813" />
+        <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/home_settings.xml" value="0.20811965811965813" />
+        <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/home_users.xml" value="0.20811965811965813" />
+        <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/menu/bottom_menu.xml" value="0.32708333333333334" />
       </map>
     </option>
   </component>
