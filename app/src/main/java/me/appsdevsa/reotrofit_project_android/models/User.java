@@ -13,6 +13,12 @@ public class User {
         this.school = school;
     }
 
+    public User(String email, String name, String school) {
+        this.email = email;
+        this.name = name;
+        this.school = school;
+    }
+
     public int getId() {
         return id;
     }

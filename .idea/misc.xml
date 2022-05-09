@@ -10,6 +10,9 @@
         <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/home_fragment.xml" value="0.20811965811965813" />
         <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/home_settings.xml" value="0.20811965811965813" />
         <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/home_users.xml" value="0.20811965811965813" />
+        <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/recyclerview_layout.xml" value="0.27717391304347827" />
+        <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/recyclerview_users.xml" value="0.20811965811965813" />
+        <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/layout/users_fragment.xml" value="0.288034188034188" />
         <entry key="..\:/Android_Projects/Reotrofit_Project_Android/app/src/main/res/menu/bottom_menu.xml" value="0.32708333333333334" />
       </map>
     </option>
@@ -19,5 +22,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.27717391304347827" />
+      </ProjectState>
+    </option>
   </component>
 </project>
