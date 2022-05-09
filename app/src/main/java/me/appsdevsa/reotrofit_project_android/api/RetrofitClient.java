@@ -1,4 +1,4 @@
-package me.appsdevsa.reotrofit_project_android;
+package me.appsdevsa.reotrofit_project_android.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

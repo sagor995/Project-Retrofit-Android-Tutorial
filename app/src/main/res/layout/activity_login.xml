@@ -6,21 +6,21 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.LoginActivity">
     <TextView
         android:textStyle="bold"
         android:padding="10dp"
         android:textSize="35sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up" />
+        android:text="Login" />
     <EditText
         android:focusable="true"
         android:autofillHints="emailAddress"
         android:padding="10dp"
         android:textSize="25sp"
         android:hint="Email"
-        android:id="@+id/email"
+        android:id="@+id/emailLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
@@ -29,25 +29,7 @@
         android:padding="10dp"
         android:textSize="25sp"
         android:hint="Password"
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:focusable="true"
-        android:autofillHints="name"
-        android:padding="10dp"
-        android:textSize="25sp"
-        android:hint="Name"
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:focusable="true"
-        android:autofillHints="name"
-        android:padding="10dp"
-        android:textSize="25sp"
-        android:hint="School"
-        android:id="@+id/school"
+        android:id="@+id/passwordLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
@@ -56,7 +38,7 @@
         android:textSize="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already Have an Account?" />
+        android:text="Don\'t Have an Account?" />
     <TextView
         android:textStyle="bold"
         android:foreground="?android:attr/selectableItemBackground"
@@ -64,16 +46,16 @@
         android:clickable="true"
         android:padding="10dp"
         android:textSize="25sp"
-        android:id="@+id/logIn"
+        android:id="@+id/registerTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click Here To Login" />
+        android:text="Click Here To Register" />
     <Button
         android:layout_marginTop="20dp"
-        android:text="SignUp"
+        android:text="Login"
         android:padding="10dp"
         android:textSize="25sp"
-        android:id="@+id/signUp"
+        android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

@@ -1,20 +1,17 @@
-package me.appsdevsa.reotrofit_project_android;
+package me.appsdevsa.reotrofit_project_android.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.regex.Pattern;
-
-import okhttp3.ResponseBody;
+import me.appsdevsa.reotrofit_project_android.models.DefaultResponse;
+import me.appsdevsa.reotrofit_project_android.R;
+import me.appsdevsa.reotrofit_project_android.api.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.logIn:
-
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.signUp:
                 userSignUp();

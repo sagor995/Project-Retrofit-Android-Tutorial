@@ -1,4 +1,4 @@
-package me.appsdevsa.reotrofit_project_android;
+package me.appsdevsa.reotrofit_project_android.models;
 
 import com.google.gson.annotations.SerializedName;
 
