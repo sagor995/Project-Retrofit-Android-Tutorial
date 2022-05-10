@@ -6,6 +6,7 @@ import me.appsdevsa.reotrofit_project_android.models.User;
 import me.appsdevsa.reotrofit_project_android.models.UsersResponse;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -50,6 +51,12 @@ public interface Api {
             @Field("current_password") String current_password,
             @Field("new_password") String new_password,
             @Field("email") String email
+    );
+
+
+    @DELETE("deleteuser/{id}")
+    Call<DefaultResponse> deleteUser(
+            @Path("id") int id
     );
 
 }

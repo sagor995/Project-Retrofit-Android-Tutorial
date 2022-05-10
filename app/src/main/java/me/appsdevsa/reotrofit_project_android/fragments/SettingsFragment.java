@@ -1,5 +1,7 @@
 package me.appsdevsa.reotrofit_project_android.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -171,9 +173,53 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), "Logout", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.deleteProfile:
-                Toast.makeText(getActivity(), "Profile Deleted", Toast.LENGTH_SHORT).show();
+                deleteUser();
+
                 break;
         }
+    }
+
+    private void deleteUser() {
+        AlertDialog.Builder aBuilder = new AlertDialog.Builder(getActivity());
+        aBuilder.setTitle("Are you sure?");
+        aBuilder.setMessage("You are gonna lose your account?");
+
+
+        aBuilder.setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                User user = SharedPreferenceManager.getInstance(getActivity()).getUser();
+                Call<DefaultResponse> call = RetrofitClient.getInstance().getApi().deleteUser(user.getId());
+                call.enqueue(new Callback<DefaultResponse>() {
+                    @Override
+                    public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                        if(!response.body().isErr()){
+                            SharedPreferenceManager.getInstance(getActivity()).clear();
+                            Intent i = new Intent(getActivity(), LoginActivity.class);
+                            //Open a new activity by clearing or closing all the previous.
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(i);
+                        }
+                        Toast.makeText(getActivity(), ""+response.body().getMsg(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<DefaultResponse> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+        aBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog dialog = aBuilder.create();
+        dialog.show();
+
     }
 
     private void logout() {
