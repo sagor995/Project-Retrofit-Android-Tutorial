@@ -1,5 +1,6 @@
 package me.appsdevsa.reotrofit_project_android.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import me.appsdevsa.reotrofit_project_android.R;
+import me.appsdevsa.reotrofit_project_android.activities.LoginActivity;
+import me.appsdevsa.reotrofit_project_android.activities.ProfileActivity;
 import me.appsdevsa.reotrofit_project_android.api.RetrofitClient;
 import me.appsdevsa.reotrofit_project_android.models.DefaultResponse;
 import me.appsdevsa.reotrofit_project_android.models.LoginResponse;
@@ -164,6 +167,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 changePassword();
                 break;
             case R.id.logOut:
+                logout();
                 Toast.makeText(getActivity(), "Logout", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.deleteProfile:
@@ -172,7 +176,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    private void logout() {
+        SharedPreferenceManager.getInstance(getActivity()).clear();
 
+        Intent i = new Intent(getActivity(), LoginActivity.class);
+        //Open a new activity by clearing or closing all the previous.
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
+    }
 
 
 }
