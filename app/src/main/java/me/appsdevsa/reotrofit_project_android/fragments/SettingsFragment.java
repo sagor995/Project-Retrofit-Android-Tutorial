@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import me.appsdevsa.reotrofit_project_android.R;
 import me.appsdevsa.reotrofit_project_android.api.RetrofitClient;
+import me.appsdevsa.reotrofit_project_android.models.DefaultResponse;
 import me.appsdevsa.reotrofit_project_android.models.LoginResponse;
 import me.appsdevsa.reotrofit_project_android.models.User;
 import me.appsdevsa.reotrofit_project_android.storage.SharedPreferenceManager;
@@ -25,7 +26,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
 
     EditText email, cpassword, npassword, name, school;
-    String emailText, nameText, schoolText;
+    String emailText, nameText, schoolText, cpassText, npassText;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -105,6 +106,54 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    private void changePassword() {
+
+        User user = SharedPreferenceManager.getInstance(getActivity()).getUser();
+
+        cpassText = cpassword.getText().toString().trim();
+        npassText = npassword.getText().toString().trim();
+
+        if(cpassText.isEmpty()){
+            cpassword.setError("Current password required");
+            cpassword.requestFocus();
+            return;
+        }
+
+        if(npassText.isEmpty()){
+            npassword.setError("New password required");
+            npassword.requestFocus();
+            return;
+        }
+
+        if(cpassText.length() < 6){
+            cpassword.setError("password length should be at least 6 chars long.");
+            cpassword.requestFocus();
+            return;
+        }
+
+        if(npassText.length() < 6){
+            npassword.setError("Password length should be at least 6 chars long.");
+            npassword.requestFocus();
+            return;
+        }
+
+        Call<DefaultResponse> call = RetrofitClient.getInstance().getApi().updatePassword(
+                cpassText, npassText, user.getEmail()
+        );
+        
+        call.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                Toast.makeText(getActivity(), ""+response.body().getMsg(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -112,7 +161,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 updateProfile();
                 break;
             case R.id.changePassword:
-                Toast.makeText(getActivity(), "Password Changing", Toast.LENGTH_SHORT).show();
+                changePassword();
                 break;
             case R.id.logOut:
                 Toast.makeText(getActivity(), "Logout", Toast.LENGTH_SHORT).show();
@@ -122,6 +171,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
+
 
 
 }

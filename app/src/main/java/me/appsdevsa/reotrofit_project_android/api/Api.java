@@ -44,4 +44,12 @@ public interface Api {
             @Field("school") String school
     );
 
+    @FormUrlEncoded
+    @PUT("updatepassword")
+    Call<DefaultResponse> updatePassword(
+            @Field("current_password") String current_password,
+            @Field("new_password") String new_password,
+            @Field("email") String email
+    );
+
 }
